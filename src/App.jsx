@@ -27,7 +27,7 @@ export default function App() {
   const [todos, setTodos] = useLocalStorage('todos', []);
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>
-      <BrowserRouter>
+    <BrowserRouter basename="/react-todo-list">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
