@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import { HashRouter, Outlet, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes, Link } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
 import AddTodo from './pages/AddTodo';
@@ -25,10 +25,9 @@ function Layout() {
 
 export default function App() {
   const [todos, setTodos] = useLocalStorage('todos', []);
-
   return (
     <TodoContext.Provider value={{ todos, setTodos }}>
-      <HashRouter>
+      <BrowserRouter basename="/react-todo-list">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -36,7 +35,7 @@ export default function App() {
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </TodoContext.Provider>
   );
 }
